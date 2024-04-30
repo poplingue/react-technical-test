@@ -5,25 +5,25 @@ import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 
 type ChatBubbleProps = {
-  content: string;
+  body: string;
   variant: "solid" | "outlined";
-  timestamp: string;
-  sender: {
-    name: string;
-    avatar: string;
+  created_at: string;
+  user: {
+    login: string;
+    avatar_url: string;
   };
 };
 
-export default function ChatBubble({ content, variant, timestamp, sender }: ChatBubbleProps) {
+export default function ChatBubble({ body, variant, created_at, user }: ChatBubbleProps) {
   return (
     <Stack direction="row" spacing={2}>
-      <Avatar size="sm" variant="solid" src={sender.avatar} />
-      <Box sx={{ maxWidth: "60%", minWidth: "auto" }}>
+      <Avatar size="sm" variant="solid" src={user.avatar_url} />
+      <Box>
         <Stack direction="row" spacing={2} sx={{ mb: 0.25 }}>
           <Typography level="body-xs" fontWeight="bold">
-            {sender.name}
+            {user.login}
           </Typography>
-          <Typography level="body-xs">{timestamp}</Typography>
+          <Typography level="body-xs">{created_at}</Typography>
         </Stack>
         <Box>
           <Sheet
@@ -37,7 +37,7 @@ export default function ChatBubble({ content, variant, timestamp, sender }: Chat
             }}
           >
             <Typography level="body-sm" color="primary">
-              {content}
+              {body}
             </Typography>
           </Sheet>
         </Box>
