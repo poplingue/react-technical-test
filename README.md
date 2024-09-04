@@ -1,30 +1,27 @@
-# React + TypeScript + Vite
+# Consignes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Vous allez devoir contribuer à un petite application Github. Celle-ci sert à visualiser la discussion autour d'une issue.
 
-Currently, two official plugins are available:
+Pour démarrer le projet il suffit de faire `npm i && npm start`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Essayez de réaliser un maximum de tâches **en un temps limité à 3 heures**. Il est inutile de chercher à réaliser l'ensemble, on sait qu'il faudrait plus de temps que celui imparti et ce n'est pas le but recherché.
 
-## Expanding the ESLint configuration
+### 📝 Ajouter un champ éditable pour changer d’issue
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Pour l'instant on visualise en dur l'issue `facebook/react/issues/7901`. Permettre à l'utilisateur de visualiser n'importe quelle issue. L'interface est libre, on vous laisse choisir ce qui vous semble pertinent et réalisable dans un temps court.
 
-- Configure the top-level `parserOptions` property like this:
+### 📝 Lister les utilisateurs participant à la conversation
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
+Lister les utilisateurs sur la gauche de l'écran (dans la sidebar) et afficher le nombre de messages par utilisateur (à coté de leur nom ou pseudo).
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 📝 Filtrer les utilisateurs
+
+S'appuyer sur liste d'utilisateurs dans la sidebar et ajouter la possibilité de filtrer les messages en masquant certains utilisateurs.
+
+### 📝 Mettre en forme le contenu
+
+Actuellement les messages sont affichés en texte brut. Ajouter la mise en forme originale : texte en gras, liens, extraits de code, etc.
+
+### 📝 Ajouter les évènements de la timeline
+
+Sur une issue il peut y avoir d'autres évènements que des messages : ajout d'un label, changement de statut (clôture de l'issue). Afficher ces évènements au milieu de la conversation, en respectant la date de publication.
