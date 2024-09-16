@@ -9,7 +9,7 @@ Lorsqu'on vous aurez terminé, nous attendons recevoir votre code sous forme de 
 
 ### 📝 1. Ajouter un champ éditable pour changer d’issue
 
-Pour l'instant on visualise en dur l'issue `facebook/react/issues/7901`. Permettre à l'utilisateur de visualiser n'importe quelle issue. L'interface est libre, on vous laisse choisir ce qui vous semble pertinent et réalisable dans un temps court.
+Pour l'instant on visualise en dur l'issue `facebook/react/issues/7901`. Permettre à l'utilisateur de visualiser une autre issue. Vous êtes libre, on vous laisse choisir une solution qui vous semble pertinente et réalisable dans un temps court.
 
 ### 📝 2. Lister les utilisateurs participant à la conversation
 
