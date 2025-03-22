@@ -3,8 +3,13 @@ import CssBaseline from "@mui/joy/CssBaseline";
 import { CssVarsProvider } from "@mui/joy/styles";
 import MessagesPane from "./MessagesPane";
 import Sidebar from "./Sidebar";
+import { useGlobalContext } from "./GlobalContext";
 
 function App() {
+  const {
+    state: { issue },
+  } = useGlobalContext();
+
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
@@ -13,7 +18,7 @@ function App() {
           <Sidebar />
         </Box>
         <Box component="main" sx={{ flex: 1 }}>
-          <MessagesPane />
+          {issue && <MessagesPane />}
         </Box>
       </Box>
     </CssVarsProvider>

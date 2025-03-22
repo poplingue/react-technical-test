@@ -8,10 +8,7 @@ type ChatBubbleProps = {
   body: string;
   variant: "solid" | "outlined";
   created_at: string;
-  user: {
-    login: string;
-    avatar_url: string;
-  };
+  user: User;
 };
 
 export default function ChatBubble({ body, variant, created_at, user }: ChatBubbleProps) {
