@@ -16,6 +16,7 @@ const initialState: GlobalContextState = {
     id: 0,
     created_at: "",
     user: {
+      id: "",
       login: "",
       avatar_url: "",
     },

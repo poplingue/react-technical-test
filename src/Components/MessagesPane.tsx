@@ -3,9 +3,9 @@ import Sheet from "@mui/joy/Sheet";
 import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 import ChatBubble from "./ChatBubble";
-import useFetch from "./useFetch";
+import useFetch from "../Hooks/useFetch";
 
-import { useGlobalContext } from "./GlobalContext";
+import { useGlobalContext } from "../Context/GlobalContext";
 import { useCallback, useEffect, useState } from "react";
 
 export default function MessagesPane() {

@@ -1,9 +1,9 @@
 import Box from "@mui/joy/Box";
 import CssBaseline from "@mui/joy/CssBaseline";
 import { CssVarsProvider } from "@mui/joy/styles";
-import MessagesPane from "./MessagesPane";
-import Sidebar from "./Sidebar";
-import { useGlobalContext } from "./GlobalContext";
+import MessagesPane from "./Components/MessagesPane";
+import Sidebar from "./Components/Sidebar";
+import { useGlobalContext } from "./Context/GlobalContext";
 
 function App() {
   const {

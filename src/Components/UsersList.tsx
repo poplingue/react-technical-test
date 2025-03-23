@@ -4,7 +4,7 @@ import ListItem from "@mui/joy/ListItem";
 import ListItemButton from "@mui/joy/ListItemButton";
 import ListItemDecorator from "@mui/joy/ListItemDecorator";
 import PersonIcon from "@mui/icons-material/Person";
-import { useGlobalContext } from "./GlobalContext";
+import { useGlobalContext } from "../Context/GlobalContext";
 import { useEffect, useState } from "react";
 
 interface UserColor {

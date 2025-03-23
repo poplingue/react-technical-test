@@ -2,10 +2,10 @@ import { Input, FormControl, FormLabel } from "@mui/joy";
 import CircularProgress from "@mui/joy/CircularProgress";
 import Sheet from "@mui/joy/Sheet";
 import { useCallback, useEffect, useState } from "react";
-import useFetch from "./useFetch";
-import useDebounce from "./useDebounce";
+import useFetch from "../Hooks/useFetch";
+import useDebounce from "../Hooks/useDebounce";
 
-import { useGlobalContext } from "./GlobalContext";
+import { useGlobalContext } from "../Context/GlobalContext";
 import UsersList from "./UsersList";
 export default function Sidebar() {
   const {
