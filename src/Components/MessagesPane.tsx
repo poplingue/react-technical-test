@@ -31,12 +31,19 @@ export default function MessagesPane() {
 
     data.forEach((event: EventIssue) => {
       if (event.actor) {
-        uniqueActors.set(event.actor.login, event.actor);
+        uniqueActors.set(event.actor.login, { ...event.actor, active: true });
       }
     });
+
+    //TODO add Issue user in issue.user
     setUsers(Array.from(uniqueActors.values()));
+
     setUsersInit(false);
   }, [data, setUsers]);
+
+  function isValidEventType(eventType: string): eventType is EventType {
+    return eventType === "labeled" || eventType === "commented";
+  }
 
   useEffect(() => {
     if (data && usersInit) {
@@ -97,18 +104,37 @@ export default function MessagesPane() {
       )}
       {issue.number && (
         <Stack spacing={2} justifyContent="flex-end" px={2} py={3}>
-          <ChatBubble variant="solid" {...issue!} actor={issue.user} />
-          {data.map((event: EventIssue) =>
-            event.actor ? (
-              <ChatBubble
-                key={event.id}
-                variant={event?.actor.login === issue!.user.login ? "solid" : "outlined"}
-                {...event}
-              />
-            ) : (
-              <p>{event.id}</p>
-            ),
-          )}
+          <ChatBubble
+            variant="solid"
+            actor={issue.user}
+            body={issue.body}
+            created_at={issue.created_at}
+            event="commented"
+          />
+
+          {data.map((event: EventIssue) => {
+            let eventElement: React.ReactNode | HTMLParagraphElement = null;
+
+            if (event.actor) {
+              // Filter actor active/inactive
+              const currentUser = users.filter((user) => event.actor && user.id === event.actor.id)[0];
+              const activeActor = event.actor.id && currentUser?.active;
+
+              eventElement = activeActor && isValidEventType(event.event) && (
+                <ChatBubble
+                  key={event.id}
+                  variant={event?.actor.login === issue!.user.login ? "solid" : "outlined"}
+                  body={event.body ? event.body : event.source?.issue.body}
+                  created_at={event.created_at}
+                  actor={event.actor}
+                  event={event.event}
+                  label={event.label}
+                />
+              );
+            }
+
+            return eventElement;
+          })}
         </Stack>
       )}
     </Sheet>

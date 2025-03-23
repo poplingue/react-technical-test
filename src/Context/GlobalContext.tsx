@@ -9,7 +9,7 @@ interface GlobalContextValue {
   state: GlobalContextState;
   setIssue: (issue: Issue) => void;
   setUsers: (users: User[]) => void;
-  setActiveUser: (id: string) => void;
+  toggleActiveUser: (id: string) => void;
 }
 
 const initialState: GlobalContextState = {
@@ -20,7 +20,7 @@ const initialState: GlobalContextState = {
       id: "",
       login: "",
       avatar_url: "",
-      active: false,
+      active: true,
     },
     number: "",
     isFetched: true,
@@ -35,7 +35,7 @@ const defaultContextValue: GlobalContextValue = {
   state: initialState,
   setIssue: () => {},
   setUsers: () => {},
-  setActiveUser: () => {},
+  toggleActiveUser: () => {},
 };
 
 export const GlobalContext = createContext<GlobalContextValue>(defaultContextValue);
@@ -55,7 +55,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     setState((prevState) => ({ ...prevState, users }));
   };
 
-  const setActiveUser = (userId: string) => {
+  const toggleActiveUser = (userId: string) => {
     const newUsers = state.users.map((user) => {
       return user.id === userId ? { ...user, active: !user.active } : user;
     });
@@ -66,7 +66,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     state,
     setIssue,
     setUsers,
-    setActiveUser,
+    toggleActiveUser,
   };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;

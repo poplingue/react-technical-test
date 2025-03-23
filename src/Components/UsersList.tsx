@@ -11,12 +11,13 @@ const UsersList = () => {
   const [randomColors, setRandomColors] = useState<UserColor>({});
   const {
     state: { users },
-    setActiveUser,
+    toggleActiveUser,
   } = useGlobalContext();
 
   useEffect(() => {
     const obj: UserColor = {};
 
+    // Manage random color of person icon
     if (users.length !== Object.keys(randomColors).length) {
       users.map(({ id }) => {
         obj[id] = "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -26,7 +27,7 @@ const UsersList = () => {
     }
   }, [randomColors, users]);
   const handleUserSelect = (userId: string) => {
-    setActiveUser(userId)
+    toggleActiveUser(userId)
   };
 
   return (

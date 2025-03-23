@@ -43,16 +43,19 @@ export default function Sidebar() {
         isFetched,
         title,
         body,
+        source,
         comments_url,
       } = data;
 
       setIssue({
         id,
+        source,
         created_at,
         user: {
           id: userId,
           login,
           avatar_url,
+          active: true,
         },
         number,
         isFetched,
@@ -62,7 +65,7 @@ export default function Sidebar() {
       });
     }
     setIsLoading(false);
-  }, [data, setIssue]);
+  }, [data, isSuccess, setIssue]);
 
   // Init issue
   useEffect(() => {

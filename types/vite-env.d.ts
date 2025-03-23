@@ -7,11 +7,24 @@ declare global {
     active: boolean;
   };
 
+  type Source = {
+    issue: Issue;
+  };
+
+  type EventType = "labeled" | "commented";
+
+  type LabelType = {
+    name: string;
+  };
+
   type EventIssue = {
     id: string;
     created_at: string;
     actor: User;
     body: string;
+    source: Source;
+    label: LabelType;
+    event: EventType;
   };
 
   type Issue = {
@@ -24,6 +37,7 @@ declare global {
     title: string;
     body: string;
     comments_url: string;
+    source?: Source;
   };
 }
 

@@ -11,7 +11,7 @@ Lorsqu'on vous aurez terminé, nous attendons recevoir votre code sous forme de 
 
 Pour l'instant on visualise en dur l'issue `facebook/react/issues/7901`. Permettre à l'utilisateur de visualiser une autre issue. Vous êtes libre, on vous laisse choisir une solution qui vous semble pertinente et réalisable dans un temps court.
 
-#### One solution
+#### One solution OK
 * add an input field in Sidebar
 * fetch FB API https://api.github.com/repos/facebook/react/issues/ onChange with number
 * add debounce effect
@@ -20,7 +20,7 @@ Pour l'instant on visualise en dur l'issue `facebook/react/issues/7901`. Permett
 
 Lister les utilisateurs sur la gauche de l'écran (dans la sidebar) et afficher le nombre de messages par utilisateur (à coté de leur nom ou pseudo).
 
-#### One solution
+#### One solution OK
 * get users list with https://api.github.com/repos/facebook/react/issues/[id]/timeline
 * use reduce on key [actor.login] to count messages
 
@@ -28,7 +28,7 @@ Lister les utilisateurs sur la gauche de l'écran (dans la sidebar) et afficher 
 
 S'appuyer sur la liste d'utilisateurs dans la sidebar et ajouter la possibilité de filtrer les messages en masquant certains utilisateurs.
 
-#### One solution
+#### One solution OK
 * onClick on user in the left list => filter messages in the right list
 * possibility to have more than one user selected => context API??
 
