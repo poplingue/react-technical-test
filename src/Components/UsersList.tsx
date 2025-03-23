@@ -1,8 +1,4 @@
-import { FormControl, FormLabel } from "@mui/joy";
-import List from "@mui/joy/List";
-import ListItem from "@mui/joy/ListItem";
-import ListItemButton from "@mui/joy/ListItemButton";
-import ListItemDecorator from "@mui/joy/ListItemDecorator";
+import { FormControl, FormLabel, List, ListItem, ListItemButton, ListItemDecorator } from "@mui/joy";
 import PersonIcon from "@mui/icons-material/Person";
 import { useGlobalContext } from "../Context/GlobalContext";
 import { useEffect, useState } from "react";
@@ -13,9 +9,9 @@ interface UserColor {
 
 const UsersList = () => {
   const [randomColors, setRandomColors] = useState<UserColor>({});
-  const [activeUsers, setActiveUsers] = useState<User[]>([]);
   const {
     state: { users },
+    setActiveUser,
   } = useGlobalContext();
 
   useEffect(() => {
@@ -30,10 +26,7 @@ const UsersList = () => {
     }
   }, [randomColors, users]);
   const handleUserSelect = (userId: string) => {
-    const newActiveStates: User[] = activeUsers.flatMap((user: User) =>
-      user.id === userId ? { ...user, id: userId } : [],
-    );
-    setActiveUsers(newActiveStates);
+    setActiveUser(userId)
   };
 
   return (
@@ -45,7 +38,7 @@ const UsersList = () => {
             users.map((user: User) => {
               return (
                 <ListItem>
-                  <ListItemButton onClick={() => handleUserSelect(user.id)}>
+                  <ListItemButton selected={user.active} onClick={() => handleUserSelect(user.id)}>
                     <ListItemDecorator>
                       <PersonIcon style={{ color: randomColors[user.id] }} />
                     </ListItemDecorator>

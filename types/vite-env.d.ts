@@ -4,6 +4,7 @@ declare global {
     login: string;
     avatar_url: string;
     id: string;
+    active: boolean;
   };
 
   type EventIssue = {
