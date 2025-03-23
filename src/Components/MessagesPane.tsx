@@ -1,7 +1,4 @@
-import Chip from "@mui/joy/Chip";
-import Sheet from "@mui/joy/Sheet";
-import Stack from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
+import { Chip, Sheet, Stack, Typography } from "@mui/joy";
 import ChatBubble from "./ChatBubble";
 import useFetch from "../Hooks/useFetch";
 
@@ -35,7 +32,7 @@ export default function MessagesPane() {
       }
     });
 
-    //TODO add Issue user in issue.user
+    //TODO add Issue's user in issue.user
     setUsers(Array.from(uniqueActors.values()));
 
     setUsersInit(false);
@@ -60,6 +57,7 @@ export default function MessagesPane() {
 
   return (
     <Sheet
+      data-testid="MessagesPane"
       sx={{
         height: "100%",
         display: "flex",
@@ -116,19 +114,20 @@ export default function MessagesPane() {
             let eventElement: React.ReactNode | HTMLParagraphElement = null;
 
             if (event.actor) {
-              // Filter actor active/inactive
-              const currentUser = users.filter((user) => event.actor && user.id === event.actor.id)[0];
-              const activeActor = event.actor.id && currentUser?.active;
+              const { actor, body, source, label, id, event: currentEvent, created_at } = event;
 
-              eventElement = activeActor && isValidEventType(event.event) && (
+              // Filter actor active/inactive
+              const currentUser = users.filter((user) => actor && user.id === actor.id)[0];
+              const activeActor = actor.id && currentUser?.active;
+              eventElement = activeActor && isValidEventType(currentEvent) && (
                 <ChatBubble
-                  key={event.id}
-                  variant={event?.actor.login === issue!.user.login ? "solid" : "outlined"}
-                  body={event.body ? event.body : event.source?.issue.body}
-                  created_at={event.created_at}
-                  actor={event.actor}
-                  event={event.event}
-                  label={event.label}
+                  key={id}
+                  variant={actor.login === issue!.user.login ? "solid" : "outlined"}
+                  body={body ? body : source?.issue.body}
+                  created_at={created_at}
+                  actor={actor}
+                  event={currentEvent}
+                  label={label}
                 />
               );
             }

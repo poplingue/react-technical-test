@@ -29,12 +29,14 @@ export default function Sidebar() {
     { retry: false },
   );
   const updateIssue = async (ev: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentId(ev.target.value);
-    setIsLoading(true);
+    if (ev.target.value !== currentId) {
+      setCurrentId(ev.target.value);
+    }
   };
 
   const fetchData = useCallback(async () => {
     if (isSuccess && data) {
+      setIsLoading(true);
       const {
         id,
         created_at,
@@ -60,7 +62,7 @@ export default function Sidebar() {
         number,
         isFetched,
         title,
-        body,
+        body: body || title,
         comments_url,
       });
     }
@@ -84,6 +86,7 @@ export default function Sidebar() {
 
   return (
     <Sheet
+      data-testid="Sidebar"
       className="Sidebar"
       sx={{
         position: "sticky",

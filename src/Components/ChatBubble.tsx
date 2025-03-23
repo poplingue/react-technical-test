@@ -1,8 +1,4 @@
-import { Avatar } from "@mui/joy";
-import Box from "@mui/joy/Box";
-import Sheet from "@mui/joy/Sheet";
-import Stack from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
+import { Avatar, Chip, Box, Sheet, Stack, Typography } from "@mui/joy";
 import FormatParagraph from "./FormatParagraph";
 
 type ChatBubbleProps = {
@@ -42,9 +38,9 @@ export default function ChatBubble({ body, variant, created_at, actor, event, la
               </Typography>
             )}
             {event === "labeled" && label && (
-              <Typography level="body-sm" color="neutral">
+              <Chip variant="soft" color="primary">
                 {label.name}
-              </Typography>
+              </Chip>
             )}
           </Sheet>
         </Box>

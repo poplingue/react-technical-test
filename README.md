@@ -36,7 +36,7 @@ S'appuyer sur la liste d'utilisateurs dans la sidebar et ajouter la possibilité
 
 Actuellement les messages sont affichés en texte brut. Ajouter la mise en forme originale : texte en gras, liens, extraits de code, etc.
 
-#### One solution
+#### One solution OK
 * react-markdown and custom for \n
 
 ### 📝 5. Ajouter les évènements de la timeline
