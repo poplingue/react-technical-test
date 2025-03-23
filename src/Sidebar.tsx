@@ -1,4 +1,4 @@
-import Input from "@mui/joy/Input";
+import { Input, FormControl, FormLabel } from "@mui/joy";
 import CircularProgress from "@mui/joy/CircularProgress";
 import Sheet from "@mui/joy/Sheet";
 import { useCallback, useEffect, useState } from "react";
@@ -6,8 +6,12 @@ import useFetch from "./useFetch";
 import useDebounce from "./useDebounce";
 
 import { useGlobalContext } from "./GlobalContext";
+import UsersList from "./UsersList";
 export default function Sidebar() {
-  const { setIssue } = useGlobalContext();
+  const {
+    setIssue,
+    state: { users = [] },
+  } = useGlobalContext();
 
   const [currentId, setCurrentId] = useState<string>("7901");
   const [init, setInit] = useState<boolean>(true);
@@ -31,14 +35,24 @@ export default function Sidebar() {
 
   const fetchData = useCallback(async () => {
     if (isSuccess && data) {
-      const { id, created_at, user, number, isFetched, title, body, comments_url } = data;
+      const {
+        id,
+        created_at,
+        user: { id: userId, login, avatar_url },
+        number,
+        isFetched,
+        title,
+        body,
+        comments_url,
+      } = data;
 
       setIssue({
         id,
         created_at,
         user: {
-          login: user.login,
-          avatar_url: user.avatar_url,
+          id: userId,
+          login,
+          avatar_url,
         },
         number,
         isFetched,
@@ -56,7 +70,7 @@ export default function Sidebar() {
       setIssue(data);
       setInit(false);
     }
-  }, [init, data, setIssue]);
+  }, [init, data, setIssue, users]);
 
   // Issue updated on input changed with debounce
   useEffect(() => {
@@ -82,12 +96,16 @@ export default function Sidebar() {
         borderColor: "divider",
       }}
     >
-      <Input
-        value={currentId}
-        onChange={updateIssue}
-        placeholder="7901"
-        endDecorator={isLoading && <CircularProgress size="sm" color="neutral" />}
-      />
+      <FormControl>
+        <FormLabel>Facebook React Github Issue</FormLabel>
+        <Input
+          value={currentId}
+          onChange={updateIssue}
+          placeholder="7901"
+          endDecorator={isLoading && <CircularProgress size="sm" color="neutral" />}
+        />
+      </FormControl>
+      <UsersList />
     </Sheet>
   );
 }

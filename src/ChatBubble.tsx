@@ -8,17 +8,17 @@ type ChatBubbleProps = {
   body: string;
   variant: "solid" | "outlined";
   created_at: string;
-  user: User;
+  actor: User;
 };
 
-export default function ChatBubble({ body, variant, created_at, user }: ChatBubbleProps) {
+export default function ChatBubble({ body, variant, created_at, actor }: ChatBubbleProps) {
   return (
     <Stack direction="row" spacing={2}>
-      <Avatar size="sm" variant="solid" src={user.avatar_url} />
+      <Avatar size="sm" variant="solid" src={actor.avatar_url} />
       <Box>
         <Stack direction="row" spacing={2} sx={{ mb: 0.25 }}>
           <Typography level="body-xs" fontWeight="bold">
-            {user.login}
+            {actor.login}
           </Typography>
           <Typography level="body-xs">{created_at}</Typography>
         </Stack>

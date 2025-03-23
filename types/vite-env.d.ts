@@ -3,12 +3,13 @@ declare global {
   type User = {
     login: string;
     avatar_url: string;
+    id: string;
   };
 
-  type CommentIssue = {
+  type EventIssue = {
     id: string;
     created_at: string;
-    user: User;
+    actor: User;
     body: string;
   };
 

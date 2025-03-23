@@ -2,11 +2,13 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface GlobalContextState {
   issue: Issue;
+  users: User[];
 }
 
 interface GlobalContextValue {
   state: GlobalContextState;
   setIssue: (issue: Issue) => void;
+  setUsers: (users: User[]) => void;
 }
 
 const initialState: GlobalContextState = {
@@ -23,11 +25,13 @@ const initialState: GlobalContextState = {
     body: "",
     comments_url: "",
   },
+  users: [],
 };
 
 const defaultContextValue: GlobalContextValue = {
   state: initialState,
   setIssue: () => {},
+  setUsers: () => {},
 };
 
 export const GlobalContext = createContext<GlobalContextValue>(defaultContextValue);
@@ -43,9 +47,14 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     setState((prevState) => ({ ...prevState, issue }));
   };
 
+  const setUsers = (users: User[]) => {
+    setState((prevState) => ({ ...prevState, users }));
+  };
+
   const value = {
     state,
     setIssue,
+    setUsers,
   };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
