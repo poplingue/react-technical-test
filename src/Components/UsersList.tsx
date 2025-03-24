@@ -35,8 +35,7 @@ const UsersList = () => {
       <FormControl>
         <FormLabel>Users</FormLabel>
         <List>
-          {users &&
-            users.map((user: User) => {
+          {users.map((user: User) => {
               return (
                 <ListItem>
                   <ListItemButton selected={user.active} onClick={() => handleUserSelect(user.id)}>

@@ -1,19 +1,18 @@
-import { Input, FormControl, FormLabel } from "@mui/joy";
-import CircularProgress from "@mui/joy/CircularProgress";
-import Sheet from "@mui/joy/Sheet";
+import { Input, FormControl, FormLabel, Sheet, CircularProgress } from "@mui/joy";
 import { useCallback, useEffect, useState } from "react";
 import useFetch from "../Hooks/useFetch";
 import useDebounce from "../Hooks/useDebounce";
-
 import { useGlobalContext } from "../Context/GlobalContext";
 import UsersList from "./UsersList";
+
+export const DEFAULT_ISSUE = "7901"
 export default function Sidebar() {
   const {
     setIssue,
     state: { users = [] },
   } = useGlobalContext();
 
-  const [currentId, setCurrentId] = useState<string>("7901");
+  const [currentId, setCurrentId] = useState<string>(DEFAULT_ISSUE);
   const [init, setInit] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const debouncedIssueId = useDebounce(currentId, 1000);
@@ -107,7 +106,7 @@ export default function Sidebar() {
         <Input
           value={currentId}
           onChange={updateIssue}
-          placeholder="7901"
+          placeholder={DEFAULT_ISSUE}
           endDecorator={isLoading && <CircularProgress size="sm" color="neutral" />}
         />
       </FormControl>

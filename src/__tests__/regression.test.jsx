@@ -1,8 +1,9 @@
 import React from "react";
-import { describe, it, expect, test, beforeAll, beforeEach, vi } from "vitest";
+import { describe, expect, test, beforeAll, beforeEach, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import App from "./../src/App";
+import App from "../App.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { DEFAULT_ISSUE } from '../Components/Sidebar.tsx';
 
 let queryClient;
 
@@ -56,7 +57,7 @@ describe("Regression Test Suite", () => {
       </QueryClientProvider>,
     );
 
-    const input = screen.getByPlaceholderText("7901");
+    const input = screen.getByPlaceholderText(DEFAULT_ISSUE);
     fireEvent.change(input, { target: { value: "8888" } });
 
     expect(input.value).toBe("8888");
